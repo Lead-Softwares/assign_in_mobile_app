@@ -1,3 +1,4 @@
+import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:assign_in/src/core/features/accountant/screens/accountant_screen.dart';
@@ -7,122 +8,168 @@ import 'package:assign_in/src/core/features/overview/screens/overview.dart';
 import 'package:assign_in/src/core/features/settings/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
-  static const routeName = '/BottomNavbar';
+  static const routeName = '/nav-bar';
 
   @override
   State<BottomNavbar> createState() => _BottomNavbarState();
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  late PersistentTabController _controller;
-  bool isSelected = false;
+  int _selectedIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
+  final List<Widget> _screens = const [
+    OverviewScreen(),
+    AdminDashboard(),
+    AccountantScreen(),
+    CRMScreen(),
+    SettingScreen(),
+  ];
 
-    _controller = PersistentTabController(initialIndex: 0);
-    setState(() {
-      isSelected = true;
-    });
-  }
-
-  List<Widget> _buildScreens() {
-    return const [
-      OverviewScreen(),
-      AdminDashboard(),
-      AccountantScreen(),
-      CRMScreen(),
-      SettingScreen(),
-    ];
-  }
-
-  List<PersistentBottomNavBarItem> _navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/svg/dashboard.svg',
-          colorFilter: ColorFilter.mode(Colors.grey.shade500, BlendMode.srcIn),
-        ),
-        title: 'OverView',
-
-        contentPadding: 0,
-
-        inactiveColorPrimary: Colors.grey,
-        textStyle: context.textTheme.bodyMedium?.copyWith(fontSize: 14),
-      ),
-      PersistentBottomNavBarItem(
-        contentPadding: 0,
-        icon: const Icon(Icons.person_outline_outlined),
-        title: 'HR',
-        activeColorPrimary: MyColors.gradientColor1,
-        textStyle: context.textTheme.bodyMedium,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: SvgPicture.asset('assets/svg/finance.svg'),
-        title: 'Accountant',
-        contentPadding: 0,
-
-        activeColorPrimary: MyColors.gradientColor1,
-        inactiveColorPrimary: Colors.grey,
-        textStyle: context.textTheme.bodyMedium,
-      ),
-      PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(
-          'assets/svg/dollar.svg',
-          // colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
-        ),
-        title: 'CRM',
-        contentPadding: 0,
-
-        activeColorPrimary: MyColors.gradientColor1,
-        inactiveColorPrimary: Colors.grey,
-        textStyle: context.textTheme.bodyMedium,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.settings_outlined),
-        title: 'Settings',
-        contentPadding: 0,
-        textStyle: context.textTheme.bodyMedium,
-        activeColorPrimary: MyColors.gradientColor1,
-        inactiveColorPrimary: Colors.grey,
-      ),
-    ];
-  }
+  final List<_NavItem> _navItems = [
+    const _NavItem(
+      label: 'Overview',
+      activeSvg: 'assets/svg/dashboard.svg',
+      inactiveSvg: 'assets/svg/mage_dashboard.svg',
+    ),
+    const _NavItem(
+      label: 'HR',
+      activeSvg: 'assets/svg/bag.svg',
+      icon: Icons.business_center_outlined,
+    ),
+    const _NavItem(
+      label: 'Accountant',
+      activeSvg: 'assets/svg/team.svg',
+      inactiveSvg: 'assets/svg/team.svg',
+      icon: Icons.groups_outlined,
+    ),
+    const _NavItem(
+      label: 'CRM',
+      activeSvg: 'assets/svg/dollar.svg',
+      inactiveSvg: 'assets/svg/dollar.svg',
+    ),
+    const _NavItem(
+      label: 'Settings',
+      activeSvg: 'assets/svg/settings.svg',
+      icon: Icons.settings_outlined,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      navBarHeight: 80,
-      context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      padding: const EdgeInsets.all(6),
-
-      decoration: NavBarDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 10,
-            offset: const Offset(1, 2),
-            spreadRadius: 4, // Color(0xFF0c96d7)
-            //  Color(0xFF2bd0b0)
+    return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.grey.shade100,
+      body: IndexedStack(index: _selectedIndex, children: _screens),
+      bottomNavigationBar: Container(
+        height: 76,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(myPadding),
+            topRight: Radius.circular(myPadding),
           ),
-        ],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(_navItems.length, (index) {
+              final isSelected = _selectedIndex == index;
+              final item = _navItems[index];
 
-        borderRadius: BorderRadius.circular(12),
-        colorBehindNavBar: Colors.grey.shade100,
+              return GestureDetector(
+                onTap: () => setState(() => _selectedIndex = index),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (item.activeSvg != null || item.inactiveSvg != null) ...[
+                      isSelected
+                          ? ShaderMask(
+                              shaderCallback: (bounds) => LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  MyColors.gradient3,
+                                  MyColors.gradient2,
+                                  MyColors.gradientColor1,
+                                ],
+                              ).createShader(bounds),
+                              blendMode: BlendMode.srcIn,
+                              child: SvgPicture.asset(
+                                isSelected
+                                    ? item.activeSvg!
+                                    : item.inactiveSvg ?? item.activeSvg!,
+                                height: 26,
+                                width: 26,
+                              ),
+                            )
+                          : SvgPicture.asset(
+                              item.inactiveSvg ?? item.activeSvg!,
+                              height: 26,
+                              width: 26,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.grey,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                    ] else if (item.icon != null) ...[
+                      isSelected
+                          ? ShaderMask(
+                              shaderCallback: (bounds) => LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  MyColors.gradientColor1,
+                                  MyColors.gradient2,
+                                ],
+                              ).createShader(bounds),
+                              blendMode: BlendMode.srcIn,
+                              child: Icon(
+                                item.icon,
+                                size: 26,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Icon(item.icon, size: 26, color: Colors.grey),
+                    ],
+                    const SizedBox(height: 4),
+
+                    Text(
+                      item.label,
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: isSelected ? Colors.black : Colors.grey.shade700,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
+        ),
       ),
-      confineToSafeArea: false,
-
-      navBarStyle: NavBarStyle.simple,
-      isVisible: true,
     );
   }
+}
+
+class _NavItem {
+  final String label;
+  final IconData? icon;
+  final String? activeSvg;
+  final String? inactiveSvg;
+
+  const _NavItem({
+    required this.label,
+    this.icon,
+    this.activeSvg,
+    this.inactiveSvg,
+  });
 }

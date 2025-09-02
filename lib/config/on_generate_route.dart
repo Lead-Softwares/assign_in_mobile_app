@@ -4,12 +4,19 @@ import 'package:assign_in/src/core/features/accountant/screens/accountant_screen
 import 'package:assign_in/src/core/features/admin_dashboard/screens/admin_dashboard.dart';
 import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
 import 'package:assign_in/src/core/features/overview/screens/overview.dart';
+import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
 import 'package:assign_in/src/core/features/settings/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case BottomNavbar.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const BottomNavbar(),
+        );
+
       case AccountantScreen.routeName:
         return MaterialPageRoute(
           settings: settings,
@@ -35,16 +42,10 @@ class RouteGenerator {
           settings: settings,
           builder: (context) => const OverviewScreen(),
         );
-        //   case ProfileScreen.routeName:
-        // return MaterialPageRoute(
-        //   settings: settings,
-        //   builder: (context) => const ProfileScreen(),
-        // );
-
-      case BottomNavbar.routeName:
+      case ManageBusinessScreen.routeName:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => const BottomNavbar(),
+          builder: (context) => const ManageBusinessScreen(),
         );
 
       default:

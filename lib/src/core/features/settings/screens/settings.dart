@@ -3,8 +3,10 @@ import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
+import 'package:assign_in/src/core/features/settings/components/select_account.dart';
 import 'package:assign_in/src/core/features/settings/components/setting_item_tile.dart';
 import 'package:assign_in/src/core/features/settings/model/setting_model.dart';
+import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -93,6 +95,9 @@ class _SettingScreenState extends State<SettingScreen> {
               children: [
                 _title('Manage your business Account'),
                 ListTile(
+                  onTap: () {
+                    selectAccount(context);
+                  },
                   contentPadding: const EdgeInsets.all(0),
                   dense: true,
                   title: Text(
@@ -109,12 +114,20 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
 
                 ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ManageBusinessScreen(),
+                      ),
+                    );
+                  },
                   dense: true,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                   title: Text(
                     'Manage your current business',
                     style: context.textTheme.bodyMedium,
-                    maxLines: 1,
+                    // maxLines: 1,
                   ),
                   trailing: const Icon(CupertinoIcons.forward),
                   leading: const Icon(Icons.business),
@@ -216,7 +229,10 @@ class _SettingScreenState extends State<SettingScreen> {
         'Log Out',
         style: context.textTheme.bodyMedium?.copyWith(color: Colors.red),
       ),
-      leading: SvgPicture.asset('assets/svg/logout.svg', color: Colors.red),
+      leading: SvgPicture.asset(
+        'assets/svg/logout.svg',
+        colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+      ),
 
       trailing: const Icon(
         size: 15,
