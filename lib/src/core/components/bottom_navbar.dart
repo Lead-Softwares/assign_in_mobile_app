@@ -19,6 +19,7 @@ class BottomNavbar extends StatefulWidget {
 
 class _BottomNavbarState extends State<BottomNavbar> {
   int _selectedIndex = 0;
+  bool isSelected = false;
 
   final List<Widget> _screens = const [
     OverviewScreen(),
@@ -60,7 +61,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      // extendBody: true,
       backgroundColor: Colors.grey.shade100,
       body: IndexedStack(index: _selectedIndex, children: _screens),
       bottomNavigationBar: Container(
@@ -79,6 +80,48 @@ class _BottomNavbarState extends State<BottomNavbar> {
             ),
           ],
         ),
+
+        // selectedItemColor: Colors.green,
+        // unselectedItemColor: Colors.red,
+
+        // onTap: (index) => setState(() {
+        //   _selectedIndex = index;
+        //   isSelected = true;
+        // }),
+        // items: _navItems.map((w) {
+        //   return
+        //    BottomNavigationBarItem(
+        //     icon: isSelected
+        //         ? ShaderMask(
+        //             shaderCallback: (bounds) => LinearGradient(
+        //               begin: Alignment.topLeft,
+        //               end: Alignment.bottomRight,
+        //               colors: [
+        //                 MyColors.gradient3,
+        //                 MyColors.gradient2,
+        //                 MyColors.gradientColor1,
+        //               ],
+        //             ).createShader(bounds),
+        //             blendMode: BlendMode.srcIn,
+        //             child: SvgPicture.asset(
+        //               isSelected ? w.activeSvg! : w.inactiveSvg ?? w.activeSvg!,
+        //               height: 26,
+        //               width: 26,
+        //             ),
+        //           )
+        //         : SvgPicture.asset(
+        //             w.inactiveSvg ?? w.activeSvg!,
+        //             height: 26,
+        //             width: 26,
+        //             colorFilter: const ColorFilter.mode(
+        //               Colors.grey,
+        //               BlendMode.srcIn,
+        //             ),
+        //           ),
+
+        //     label: w.label,
+        //   );
+        // }).toList(),
         child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -146,6 +189,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                     Text(
                       item.label,
                       style: context.textTheme.bodyMedium?.copyWith(
+                        fontSize: 12,
                         color: isSelected ? Colors.black : Colors.grey.shade700,
                       ),
                     ),

@@ -20,9 +20,7 @@ class _SettingItemTileState extends State<SettingItemTile> {
 
       horizontalTitleGap: 6,
       contentPadding: const EdgeInsets.all(0),
-      onTap: () {
-        Navigator.pushNamed(context, widget.settingModel.routeName ?? '');
-      },
+      onTap: widget.settingModel.onTap,
       title: Text(
         widget.settingModel.title,
         style: context.textTheme.bodyMedium,

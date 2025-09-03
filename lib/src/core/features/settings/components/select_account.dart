@@ -4,15 +4,13 @@ import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
-Future<void> selectAccount(BuildContext context) {
-  return showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.white,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
-    builder: (context) {
-      return Padding(
+
+ class SelectAccount extends StatelessWidget {
+  const SelectAccount({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return     Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: myPadding,
           vertical: myPadding / 2,
@@ -29,9 +27,7 @@ Future<void> selectAccount(BuildContext context) {
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(16),
               ),
-            ),
-            // const SizedBox(height: myPadding / 1.5),
-            GeneralContainer(
+            ),            GeneralContainer(
               margin: const EdgeInsetsGeometry.symmetric(
                 horizontal: myPadding / 2,
                 vertical: myPadding,
@@ -84,8 +80,8 @@ Future<void> selectAccount(BuildContext context) {
           ],
         ),
       );
-    },
-  );
+   
+  }
 }
 
 class TileData extends StatelessWidget {

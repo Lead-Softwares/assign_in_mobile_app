@@ -2,10 +2,11 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
+import 'package:assign_in/src/core/features/admin_dashboard/components/invite_team_widget.dart';
 import 'package:assign_in/src/core/features/settings/components/select_account.dart';
 import 'package:assign_in/src/core/features/settings/components/setting_item_tile.dart';
 import 'package:assign_in/src/core/features/settings/model/setting_model.dart';
+import 'package:assign_in/src/core/features/settings/screens/business_details.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +21,29 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  final List<SettingModel> settingItems = [
+  List<SettingModel> get settingItems => [
     SettingModel(
       title: 'Mails',
       suffixText: 'leads@gmail.com',
       icon: Icons.email_outlined,
-      routeName: HrDashboard.routeName,
+      onTap: () => Navigator.pushNamed(context, BusinessDetails.routeName),
     ),
     SettingModel(
       title: 'Company Center',
       suffixText: '',
       image: 'assets/svg/carbon_location-company.svg',
+      onTap: () {
+        showModalBottomSheet(
+          backgroundColor: Colors.white,
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          builder: (context) {
+            return const CompanyDataList();
+          },
+        );
+      },
     ),
     SettingModel(
       title: 'Insights',
@@ -96,7 +109,18 @@ class _SettingScreenState extends State<SettingScreen> {
                 _title('Manage your business Account'),
                 ListTile(
                   onTap: () {
-                    selectAccount(context);
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      builder: (context) {
+                        return const SelectAccount();
+                      },
+                    );
                   },
                   contentPadding: const EdgeInsets.all(0),
                   dense: true,
@@ -127,7 +151,6 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: Text(
                     'Manage your current business',
                     style: context.textTheme.bodyMedium,
-                    // maxLines: 1,
                   ),
                   trailing: const Icon(CupertinoIcons.forward),
                   leading: const Icon(Icons.business),

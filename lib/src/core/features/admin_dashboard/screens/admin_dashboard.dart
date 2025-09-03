@@ -1,7 +1,7 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/admin_dashboard/components/bottom_sheet_data.dart';
+import 'package:assign_in/src/core/features/admin_dashboard/components/invite_team_widget.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/deals_card.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/employee_cards.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/finance_graph.dart';
@@ -78,13 +78,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
         ],
       ),
       floatingActionButton: _addButton(),
+      // extendBody: true,
     );
   }
 
   Widget _addButton() {
     return Container(
-      height: 50,
-      width: 50,
+      width: 45,
+      height: 45,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -103,7 +104,15 @@ class _AdminDashboardState extends State<AdminDashboard> {
       ),
       child: FloatingActionButton(
         onPressed: () {
-          showItemsList(context);
+          showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            builder: (context) {
+              return const InviteTeam();
+            },
+          );
         },
         elevation: 0,
         backgroundColor: Colors.transparent,

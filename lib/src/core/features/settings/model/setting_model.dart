@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SettingModel {
   final String title;
-  final String? routeName;
+  final Function()? onTap;
   final IconData? icon;
   final String? image;
   final String? subTitle;
@@ -11,7 +11,7 @@ class SettingModel {
   final Widget? trailing;
   SettingModel({
     required this.title,
-    this.routeName,
+    this.onTap,
     this.icon,
     this.image,
     this.subTitle,

@@ -16,7 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: loading ? () {} : onPress,
+      onPressed: loading ? null : onPress,
       style: ElevatedButton.styleFrom(
         fixedSize: Size(context.width, 45),
         shape: RoundedRectangleBorder(

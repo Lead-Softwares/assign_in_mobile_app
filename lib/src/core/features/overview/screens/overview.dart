@@ -69,6 +69,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
 
   Widget _addButton() {
     return Container(
+      width: 45,
+      height: 45,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(

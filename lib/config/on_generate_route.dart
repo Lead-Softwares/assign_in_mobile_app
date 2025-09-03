@@ -2,6 +2,9 @@ import 'package:assign_in/src/core/components/bottom_navbar.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:assign_in/src/core/features/accountant/screens/accountant_screen.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/screens/admin_dashboard.dart';
+import 'package:assign_in/src/core/features/company/screens/company_assets.dart';
+import 'package:assign_in/src/core/features/company/screens/company_document.dart';
+import 'package:assign_in/src/core/features/company/screens/company_profile.dart';
 import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
 import 'package:assign_in/src/core/features/overview/screens/overview.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
@@ -31,6 +34,21 @@ class RouteGenerator {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const HrDashboard(),
+        );
+      case CompanyAssets.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const CompanyAssets(),
+        );
+      case CompanyDocuments.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const CompanyDocuments(),
+        );
+      case CompanyProfile.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const CompanyProfile(),
         );
       case AdminDashboard.routeName:
         return MaterialPageRoute(

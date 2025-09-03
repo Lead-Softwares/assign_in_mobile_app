@@ -1,7 +1,6 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/buttons.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/admin_dashboard/components/bottom_sheet_data.dart';
 import 'package:assign_in/src/core/features/settings/components/business_tabs.dart';
 import 'package:assign_in/src/core/features/settings/components/edit_business_profile.dart';
 import 'package:flutter/material.dart';
@@ -45,12 +44,7 @@ class ManageBusinessScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
-        child: CustomElevatedButton(
-          text: 'Save Changes',
-          onPress: () {
-            companyDataList(context);
-          },
-        ),
+        child: CustomElevatedButton(text: 'Save Changes', onPress: () {}),
       ),
       extendBody: true,
     );
