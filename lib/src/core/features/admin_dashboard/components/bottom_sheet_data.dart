@@ -162,3 +162,64 @@ Future<void> showItemsList(BuildContext context) {
     },
   );
 }
+
+Future<void> companyDataList(BuildContext context) {
+  final List<ItemModel> itemsData = [
+    ItemModel(
+      title: 'Compnay Profile',
+      image: 'assets/svg/user.svg',
+      ontap: () => Navigator.pushNamed(context, SettingScreen.routeName),
+    ),
+    ItemModel(
+      title: 'Company Documents',
+      image: 'assets/svg/doc.svg',
+      gradient: LinearGradient(
+        end: Alignment.bottomCenter,
+        begin: Alignment.topCenter,
+        colors: [
+          MyColors.mainCOlor,
+          MyColors.gradientColor1,
+          MyColors.gradientColor,
+        ],
+      ),
+      ontap: () => Navigator.pushNamed(context, SettingScreen.routeName),
+    ),
+
+    ItemModel(title: 'Company Assets', image: 'assets/svg/asset.svg'),
+  ];
+
+  return showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+
+        children: [
+          const SizedBox(height: myPadding / 2),
+
+          SizedBox(
+            width: context.width / 3.5,
+            child: Divider(
+              height: 10,
+              color: Colors.black,
+              thickness: 3,
+              radius: BorderRadius.circular(16),
+            ),
+          ),
+          const SizedBox(height: myPadding / 1.5),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: itemsData.length,
+            itemBuilder: (context, index) {
+              final items = itemsData[index];
+              return TileData(itemModel: items);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

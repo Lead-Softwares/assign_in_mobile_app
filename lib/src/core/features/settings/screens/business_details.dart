@@ -2,7 +2,6 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/text_feild_with_title.dart';
 import 'package:flutter/material.dart';
 
-
 class BusinessDetails extends StatefulWidget {
   const BusinessDetails({super.key});
   static const routeName = '/social-details';

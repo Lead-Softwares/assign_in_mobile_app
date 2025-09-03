@@ -1,9 +1,9 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/buttons.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
+import 'package:assign_in/src/core/features/admin_dashboard/components/bottom_sheet_data.dart';
 import 'package:assign_in/src/core/features/settings/components/business_tabs.dart';
 import 'package:assign_in/src/core/features/settings/components/edit_business_profile.dart';
-import 'package:assign_in/src/core/features/settings/screens/social_details.dart';
 import 'package:flutter/material.dart';
 
 class ManageBusinessScreen extends StatelessWidget {
@@ -48,7 +48,7 @@ class ManageBusinessScreen extends StatelessWidget {
         child: CustomElevatedButton(
           text: 'Save Changes',
           onPress: () {
-            Navigator.pushNamed(context, SocialDetails.routeName);
+            companyDataList(context);
           },
         ),
       ),

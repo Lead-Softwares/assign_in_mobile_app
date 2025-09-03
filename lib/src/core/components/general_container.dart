@@ -55,19 +55,20 @@ class SwitchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform(
-      alignment: Alignment.center,
-      transform: Matrix4.diagonal3Values(0.7, 0.7, 3),
+    return Transform.scale(
+      scale: 0.7,
       child: Switch(
         value: value,
         onChanged: onChanged,
-        activeThumbColor: Colors.green.shade600,
-        // trackOutlineWidth: WidgetStateProperty.all(2),
-        // trackOutlineColor: WidgetStateProperty.all(
-        //   Colors.black.withValues(alpha: 0.6),
-        // ),
-        trackColor: WidgetStateProperty.all(Colors.green.shade600),
-        inactiveThumbColor: Colors.white,
+        thumbColor: WidgetStateProperty.all(Colors.white),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (value) return Colors.green.shade600;
+          return Colors.grey.shade400;
+        }),
+        trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+          if (value) return Colors.green.shade600;
+          return Colors.grey.shade400;
+        }),
       ),
     );
   }

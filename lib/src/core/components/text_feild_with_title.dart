@@ -1,4 +1,5 @@
 import 'package:assign_in/src/core/constants/my_colors.dart';
+import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class TextFeildWithTitle extends StatelessWidget {
@@ -13,7 +14,8 @@ class TextFeildWithTitle extends StatelessWidget {
     this.height,
     this.validator,
     this.prefix,
-    this.fillColor, this.hintStyle,
+    this.fillColor,
+    this.hintStyle,
   });
   final String? title;
   final String label;
@@ -65,11 +67,8 @@ class TextFeildWithTitle extends StatelessWidget {
               hintText: label,
               suffix: sufix,
 
-              hintStyle: hintStyle?? TextStyle(
-                color: Colors.black.withValues(alpha: 0.8),
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
+              hintStyle: hintStyle ?? context.textTheme.bodyMedium,
+
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.shade100),
                 borderRadius: BorderRadius.circular(12),

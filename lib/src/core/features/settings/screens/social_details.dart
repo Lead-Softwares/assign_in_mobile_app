@@ -28,7 +28,7 @@ class _SocialDetailsState extends State<SocialDetails> {
       image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzEkaAN0BJ2o3ri2IsQRKXVk6ejQQqz0GUg&s',
       controller: _githubController,
-      color: Colors.blue,
+      color: Colors.green,
     ),
     SocialDetailModel(
       label: 'Leadsoftwares8789',
@@ -36,18 +36,18 @@ class _SocialDetailsState extends State<SocialDetails> {
       image:
           'https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338393_1280.png',
       controller: _instaController,
-      color: Colors.green,
+      color: Colors.pink,
     ),
     SocialDetailModel(
-      label: 'lLeadsoftwares8789',
+      label: 'Leadsoftwares8789',
       title: 'FaceBook',
       image:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Logo_de_Facebook.png/1028px-Logo_de_Facebook.png',
       controller: _fbController,
-      color: Colors.pink,
+      color: Colors.blue,
     ),
     SocialDetailModel(
-      label: 'lLeadsoftwares8789',
+      label: 'Leadsoftwares8789',
       title: 'Youtube',
       image:
           'https://www.agendamedia.co.uk/wp-content/uploads/2019/02/youtube-icon.png',
@@ -55,14 +55,14 @@ class _SocialDetailsState extends State<SocialDetails> {
       color: Colors.blue,
     ),
     SocialDetailModel(
-      label: 'lLeadsoftwares8789',
+      label: 'Leadsoftwares8789',
       title: 'Linked In',
       image: 'https://cdn-icons-png.flaticon.com/512/2496/2496097.png',
       controller: _linkediNController,
       color: Colors.red,
     ),
     SocialDetailModel(
-      label: 'lLeadsoftwares8789',
+      label: 'Leadsoftwares8789',
       title: 'Twitter',
       image: 'https://cdn-icons-png.flaticon.com/256/2496/2496110.png',
       controller: _twitterController,
@@ -106,7 +106,7 @@ class SocialTileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GeneralContainer(
-      padding: const EdgeInsetsGeometry.all(myPadding / 1.3),
+      padding: const EdgeInsetsGeometry.all(myPadding / 2),
       border: Border.all(color: Colors.grey.shade200),
 
       color: model.color.withValues(alpha: 0.08),
@@ -117,7 +117,7 @@ class SocialTileCard extends StatelessWidget {
             child: Container(
               clipBehavior: Clip.hardEdge,
               margin: const EdgeInsetsGeometry.symmetric(
-                vertical: myPadding / 2.5,
+                // vertical: myPadding / 2.5,
               ),
               padding: const EdgeInsetsGeometry.all(0),
               decoration: BoxDecoration(
@@ -132,13 +132,16 @@ class SocialTileCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(model.title, style: context.textTheme.bodyMedium),
-                const SizedBox(height: myPadding / 2),
+                Text(
+                  model.title,
+                  style: context.textTheme.bodyMedium?.copyWith(fontSize: 12),
+                ),
+                const SizedBox(height: myPadding / 3),
                 TextFeildWithTitle(
                   hintStyle: const TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w100,
-                    fontSize: 12,
+                    fontSize: 11,
                   ),
                   fillColor: Colors.white,
 

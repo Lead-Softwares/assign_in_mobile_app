@@ -23,7 +23,7 @@ class EditBusinessProfile extends StatelessWidget {
           const Color(0xFffa39ba).withValues(alpha: 0.8),
           Colors.pinkAccent.withValues(alpha: 0.7),
           Colors.redAccent.withValues(alpha: 0.7),
-          Colors.red.withValues(alpha: 0.7),
+          Colors.red.withValues(alpha: 0.8),
           Colors.orange.shade700,
         ],
         stops: [0.15, 0.3, 0.5, 0.6, 0.75, 0.9, 1.0],
@@ -50,21 +50,22 @@ class EditBusinessProfile extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  const SizedBox(width: myPadding * 4),
+                  const SizedBox(width: myPadding * 4.5),
                   BadgeContainer(
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          height: 20,
-                          width: 20,
+                          height: 18,
+                          width: 18,
                           'assets/svg/material-icon-theme_verified.svg',
                         ),
                         // const Icon(CupertinoIcons.checkmark_alt_circle),
-                        const SizedBox(width: myPadding / 2),
+                        const SizedBox(width: myPadding / 3),
                         Text(
                           'Active',
                           style: context.textTheme.bodySmall?.copyWith(
                             color: Colors.green.shade600,
+                            fontSize: 11,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -73,7 +74,7 @@ class EditBusinessProfile extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: myPadding / 2),
+              const SizedBox(height: myPadding / 3),
               Text(
                 'Software Development\n & Consulting',
                 style: context.textTheme.bodyMedium?.copyWith(
