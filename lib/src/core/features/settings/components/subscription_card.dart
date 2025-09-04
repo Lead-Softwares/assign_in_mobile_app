@@ -124,7 +124,8 @@ class SubscriptionCard extends StatelessWidget {
           : Colors.grey.shade100,
       borderRadius: BorderRadius.circular(myPadding / 2),
       border: Border.all(color: Colors.grey.shade200),
-      child: Column(
+      child: 
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

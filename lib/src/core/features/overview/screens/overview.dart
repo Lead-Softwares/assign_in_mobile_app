@@ -97,7 +97,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
         highlightElevation: 0,
         shape: const CircleBorder(),
         mini: true,
-
+        heroTag: 'Overview screen',
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

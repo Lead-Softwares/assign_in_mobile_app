@@ -1,10 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:im_stepper/stepper.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:timelines_plus/timelines_plus.dart';
 
 class CareerTimeLine extends StatelessWidget {
   const CareerTimeLine({super.key});
@@ -21,26 +23,24 @@ class CareerTimeLine extends StatelessWidget {
             'Career TimeLine',
             style: context.textTheme.bodyMedium?.copyWith(fontSize: 16),
           ),
+          const SizedBox(height: 120, child: ProgressLineWithText()),
           const SizedBox(height: myPadding / 2),
-          const ProgressLineWithText(),
-          // CustomStepper(),
-          const SizedBox(height: myPadding / 2),
-          const JourneyProgress(),
+          const EmployeeJourneyProgress(),
         ],
       ),
     );
   }
 }
 
-class JourneyProgress extends StatelessWidget {
-  const JourneyProgress({super.key});
+class EmployeeJourneyProgress extends StatelessWidget {
+  const EmployeeJourneyProgress({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GeneralContainer(
-      borderRadius: BorderRadius.circular(myPadding / 2),
-      border: Border.all(color: Colors.blue.shade50),
-      color: Colors.grey.shade100,
+      borderRadius: BorderRadius.circular(myPadding / 1.5),
+      border: Border.all(color: Colors.grey.shade200),
+      color: Colors.blue.withValues(alpha: 0.04),
       child: Column(
         children: [
           Row(
@@ -68,11 +68,13 @@ class JourneyProgress extends StatelessWidget {
               ),
             ],
           ),
+
           const SizedBox(height: myPadding / 2),
+
           StepProgressIndicator(
             totalSteps: 25,
             currentStep: 15,
-            size: 8,
+            // size: 4,
             padding: 0,
 
             roundedEdges: const Radius.circular(8),
@@ -90,38 +92,6 @@ class JourneyProgress extends StatelessWidget {
   }
 }
 
-class CustomStepper extends StatefulWidget {
-  const CustomStepper({super.key});
-
-  @override
-  State<CustomStepper> createState() => _CustomStepperState();
-}
-
-class _CustomStepperState extends State<CustomStepper> {
-  int activeStep = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return DotStepper(
-      dotRadius: 20,
-      lineConnectorsEnabled: true,
-      lineConnectorDecoration: LineConnectorDecoration(
-        color: MyColors.mainCOlor,
-        strokeWidth: 2,
-      ),
-      dotCount: 5,
-      activeStep: activeStep,
-      spacing: 25,
-      indicatorDecoration: IndicatorDecoration(color: MyColors.mainCOlor),
-      onDotTapped: (index) {
-        setState(() {
-          activeStep = index;
-        });
-      },
-    );
-  }
-}
-
 class ProgressLineWithText extends StatefulWidget {
   const ProgressLineWithText({super.key});
 
@@ -131,76 +101,118 @@ class ProgressLineWithText extends StatefulWidget {
 
 class _ProgressLineWithTextState extends State<ProgressLineWithText> {
   int activeIndex = 0;
-
-  final List<String> labels = [
-    'Joined',
-    'Promotion',
-    'Increment',
-    'upcoming',
-    'upcoming',
+  final List<StepperModel> stepperData = [
+    StepperModel(
+      title: 'Joined',
+      date: 'March 25',
+      icon: Icons.calendar_month_outlined,
+    ),
+    StepperModel(title: 'Promotion', date: 'March 25', icon: Icons.settings),
+    StepperModel(
+      title: 'Increment',
+      date: 'March 25',
+      icon: CupertinoIcons.increase_indent,
+    ),
+    StepperModel(title: 'Upcoming', date: 'March 25', icon: Icons.access_time),
+    StepperModel(title: 'Upcoming', date: 'March 25', icon: Icons.access_time),
   ];
 
-  final List<IconData> icons = [
-    Icons.calendar_month_outlined,
-    Icons.settings,
-    Icons.first_page,
-    Icons.access_time,
-    Icons.access_time,
-  ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: List.generate(labels.length, (index) {
-            final isActive = index <= activeIndex;
+    final gradient = LinearGradient(
+      begin: AlignmentGeometry.topLeft,
+      end: AlignmentGeometry.bottomRight,
+      colors: [MyColors.primaryColor, MyColors.gradient3],
+    );
 
-            return Expanded(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            activeIndex = index;
-                          });
-                        },
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: isActive
-                              ? MyColors.mainCOlor
-                              : Colors.grey.shade400,
-                          child: Icon(icons[index], color: Colors.white),
-                        ),
-                      ),
-                      if (index < labels.length - 1)
-                        Expanded(
-                          child: Container(
-                            height: 4,
-                            color: index < activeIndex
-                                ? MyColors.mainCOlor
-                                : Colors.grey.shade400,
-                          ),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    labels[index],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 9,
-                      fontWeight: FontWeight.w400,
-                      color: isActive ? Colors.black : Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }),
+    return FixedTimeline.tileBuilder(
+      mainAxisSize: MainAxisSize.min,
+
+      theme: TimelineThemeData(
+        direction: Axis.horizontal,
+        connectorTheme: ConnectorThemeData(
+          thickness: 2,
+
+          color: Colors.grey.shade400,
         ),
-      ],
+        indicatorTheme: const IndicatorThemeData(color: Colors.white),
+      ),
+      builder: TimelineTileBuilder.connected(
+        itemCount: stepperData.length,
+        itemExtent: 64,
+        connectionDirection: ConnectionDirection.before,
+        indicatorBuilder: (context, index) {
+          final stepItem = stepperData[index];
+          final isActive = index <= activeIndex;
+
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                activeIndex = index;
+              });
+            },
+            child: Container(
+              height: 36,
+              width: 36,
+
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: isActive ? gradient : null,
+                color: isActive ? MyColors.mainCOlor : Colors.white,
+                border: Border.all(
+                  color: isActive ? Colors.blue.shade300 : Colors.grey.shade300,
+                  width: 1.5,
+                ),
+              ),
+              child: Icon(
+                stepItem.icon,
+                size: 18,
+                color: isActive ? Colors.white : Colors.grey.shade400,
+              ),
+            ),
+          );
+        },
+        connectorBuilder: (context, index, connectorType) {
+          final isActive = index < activeIndex + 1;
+          return SolidLineConnector(
+            color: isActive ? MyColors.mainCOlor : Colors.grey.shade400,
+            thickness: 2,
+          );
+        },
+        contentsBuilder: (context, index) {
+          final stepItem = stepperData[index];
+          final isActive = index <= activeIndex;
+          return Column(
+            children: [
+              Text(
+                stepItem.title,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: isActive ? FontWeight.bold : FontWeight.w400,
+                  color: isActive ? Colors.black : Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                stepItem.date,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w400,
+                  color: isActive ? Colors.black : Colors.grey,
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
+}
+
+class StepperModel {
+  final IconData? icon;
+  final String title;
+  final String date;
+  StepperModel({this.icon, required this.title, required this.date});
 }

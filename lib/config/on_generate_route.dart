@@ -8,6 +8,7 @@ import 'package:assign_in/src/core/features/company/screens/company_profile.dart
 import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
 import 'package:assign_in/src/core/features/overview/screens/overview.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
+import 'package:assign_in/src/core/features/settings/screens/prefreneces_screen.dart';
 import 'package:assign_in/src/core/features/settings/screens/settings.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +50,12 @@ class RouteGenerator {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const CompanyProfile(),
+        );
+      case PrefrenecesScreen.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+
+          builder: (context) => const PrefrenecesScreen(),
         );
       case AdminDashboard.routeName:
         return MaterialPageRoute(

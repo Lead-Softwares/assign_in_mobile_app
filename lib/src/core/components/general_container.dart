@@ -56,9 +56,10 @@ class SwitchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 0.7,
+      scale: 0.65,
       child: Switch(
         value: value,
+
         onChanged: onChanged,
         thumbColor: WidgetStateProperty.all(Colors.white),
         trackColor: WidgetStateProperty.resolveWith((states) {

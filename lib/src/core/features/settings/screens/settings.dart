@@ -8,6 +8,7 @@ import 'package:assign_in/src/core/features/settings/components/setting_item_til
 import 'package:assign_in/src/core/features/settings/model/setting_model.dart';
 import 'package:assign_in/src/core/features/settings/screens/business_details.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
+import 'package:assign_in/src/core/features/settings/screens/prefreneces_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,7 +51,11 @@ class _SettingScreenState extends State<SettingScreen> {
       suffixText: '',
       icon: Icons.insights_rounded,
     ),
-    SettingModel(title: 'Prefrences', image: 'assets/svg/bitcoin.svg'),
+    SettingModel(
+      title: 'Prefrences',
+      image: 'assets/svg/bitcoin.svg',
+      onTap: () => Navigator.pushNamed(context, PrefrenecesScreen.routeName),
+    ),
     SettingModel(
       title: 'Notifications',
       icon: Icons.notification_important_outlined,

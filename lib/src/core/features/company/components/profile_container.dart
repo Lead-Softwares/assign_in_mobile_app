@@ -11,7 +11,11 @@ class ProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralContainer(
       padding: const EdgeInsetsGeometry.all(myPadding),
-      color: Colors.grey.shade200,
+    
+      gradient: LinearGradient(
+        colors: [Colors.purple.shade50.withValues(alpha: 0.2), Colors.white],
+      ),
+
       border: Border.all(color: Colors.white, width: 1.5),
       boxShadow: [
         BoxShadow(blurRadius: 4, spreadRadius: 2, color: Colors.grey.shade200),
@@ -38,8 +42,17 @@ class ProfileWidget extends StatelessWidget {
             child: const CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
-                'https://cdn.expertphotography.com/wp-content/uploads/2020/08/social-media-profile-photos.jpg',
+                'https://i.pinimg.com/736x/22/c7/96/22c796950f8256b51bffa3e5d1d2d3a0.jpg',
               ),
+            ),
+          ),
+          const SizedBox(height: myPadding / 2),
+          Text('booklyne Simol', style: context.textTheme.bodyLarge),
+          Text(
+            'debbie.baker@example.com',
+            style: context.textTheme.bodyMedium?.copyWith(
+              color: Colors.black54,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: myPadding * 1.5),

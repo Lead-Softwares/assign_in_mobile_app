@@ -1,10 +1,10 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/admin_dashboard/components/invite_team_widget.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/deals_card.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/employee_cards.dart';
 import 'package:assign_in/src/core/features/admin_dashboard/components/finance_graph.dart';
+import 'package:assign_in/src/core/features/admin_dashboard/components/invite_team_widget.dart';
 import 'package:assign_in/src/core/features/overview/components/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -118,6 +118,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
         backgroundColor: Colors.transparent,
         highlightElevation: 0,
         shape: const CircleBorder(),
+        heroTag: 'Admin dashboard',
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

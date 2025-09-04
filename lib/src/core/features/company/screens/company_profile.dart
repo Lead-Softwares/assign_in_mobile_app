@@ -2,6 +2,7 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:assign_in/src/core/features/company/components/career_timeline.dart';
 import 'package:assign_in/src/core/features/company/components/profile_container.dart';
+import 'package:assign_in/src/core/features/company/components/profile_information.dart';
 import 'package:flutter/material.dart';
 
 class CompanyProfile extends StatelessWidget {
@@ -15,8 +16,14 @@ class CompanyProfile extends StatelessWidget {
         title: Text('Company Profile', style: context.textTheme.bodyLarge),
       ),
       body: ListView(
+        shrinkWrap: true,
         padding: const EdgeInsets.all(myPadding / 2),
-        children: [const ProfileWidget(), const CareerTimeLine()],
+        children: [
+          const ProfileWidget(),
+          const CareerTimeLine(),
+          const ProfileInformation(),
+          const SizedBox(height: myPadding * 2),
+        ],
       ),
     );
   }

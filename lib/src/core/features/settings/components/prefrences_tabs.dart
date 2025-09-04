@@ -2,21 +2,18 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/screens/billing_details.dart';
-import 'package:assign_in/src/core/features/settings/screens/business_details.dart';
-import 'package:assign_in/src/core/features/settings/screens/integration_details.dart';
-import 'package:assign_in/src/core/features/settings/screens/social_details.dart';
+import 'package:assign_in/src/core/features/settings/components/tabs_components/prefrence_general_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BusinessTabs extends StatefulWidget {
-  const BusinessTabs({super.key});
+class PrefrencesTabs extends StatefulWidget {
+  const PrefrencesTabs({super.key});
 
   @override
-  State<BusinessTabs> createState() => _BusinessTabsState();
+  State<PrefrencesTabs> createState() => _PrefrencesTabsState();
 }
 
-class _BusinessTabsState extends State<BusinessTabs>
+class _PrefrencesTabsState extends State<PrefrencesTabs>
     with TickerProviderStateMixin {
   late TabController _controller;
   int selectedIndex = 0;
@@ -24,11 +21,10 @@ class _BusinessTabsState extends State<BusinessTabs>
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 4, vsync: this);
+    _controller = TabController(length: 3, vsync: this);
     _controller.addListener(() {
       setState(() {
         selectedIndex = _controller.index;
-        debugPrint('Selectd tab inex: $selectedIndex');
       });
     });
   }
@@ -44,8 +40,9 @@ class _BusinessTabsState extends State<BusinessTabs>
     return Column(
       children: [
         GeneralContainer(
+          padding: const EdgeInsetsGeometry.all(myPadding / 2),
           borderRadius: BorderRadius.circular(myPadding / 1.5),
-          border: Border.all(color: Colors.grey.shade300),
+          // border: Border.all(color: Colors.grey.shade300),
           color: Colors.grey.shade200,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,21 +75,23 @@ class _BusinessTabsState extends State<BusinessTabs>
                       borderRadius: BorderRadius.circular(myPadding / 1.5),
                     ),
                     child: _tabItem(
-                      index == 1 ? Icons.ios_share : null,
                       index == 0
-                          ? 'assets/svg/business.svg'
+                          ? Icons.settings_outlined
                           : index == 2
-                          ? 'assets/svg/stash_integrations.svg'
-                          : index == 3
-                          ? 'assets/svg/stash_billing-info.svg'
+                          ? Icons.graphic_eq_sharp
+                          : null,
+                      index == 1
+                          ? 'assets/svg/project.svg'
+                          : index == 2
+                          ? 'assets/svg/graph.svg'
                           : null,
                       index == 0
-                          ? 'Business'
+                          ? 'general'
                           : index == 1
-                          ? 'Social'
+                          ? 'Payrolls'
                           : index == 2
-                          ? 'Integration'
-                          : 'Billing',
+                          ? 'other'
+                          : '',
                       isActive,
                     ),
                   ),
@@ -107,12 +106,7 @@ class _BusinessTabsState extends State<BusinessTabs>
           height: context.height * 2,
           child: TabBarView(
             controller: _controller,
-            children: const [
-              BusinessDetails(),
-              SocialDetails(),
-              IntegrationDetails(),
-              BillingDetails(),
-            ],
+            children: const [PrefrenceGeneralTab(), SizedBox(), SizedBox()],
           ),
         ),
       ],
@@ -125,9 +119,7 @@ class _BusinessTabsState extends State<BusinessTabs>
     String title,
     bool isSelected,
   ) {
-    return 
-    
-    Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         (image != null)

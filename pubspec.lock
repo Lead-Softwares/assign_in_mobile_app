@@ -205,14 +205,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
-  im_stepper:
-    dependency: "direct main"
-    description:
-      name: im_stepper
-      sha256: "84ca411f7c4666cb8762a6dd6eec0353c96c67f674124614263875d0570ca634"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1+1"
   intl:
     dependency: transitive
     description:
@@ -349,14 +341,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
-  persistent_bottom_nav_bar:
-    dependency: "direct main"
-    description:
-      name: persistent_bottom_nav_bar
-      sha256: "6aa9b97ced1abd92c90cedd1997d34ea0b35c3ded762ac6063baccc299b0c4c5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.1"
   petitparser:
     dependency: transitive
     description:
@@ -498,6 +482,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.6"
+  timeline_tile:
+    dependency: "direct main"
+    description:
+      name: timeline_tile
+      sha256: "85ec2023c67137397c2812e3e848b2fb20b410b67cd9aff304bb5480c376fc0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
+  timelines_plus:
+    dependency: "direct main"
+    description:
+      name: timelines_plus
+      sha256: "335cd832e0aed7035458a5f336bc2c882dc70dcfa4d500d3bcadd764f1ac6553"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   typed_data:
     dependency: transitive
     description:

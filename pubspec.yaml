@@ -42,9 +42,10 @@ dependencies:
   fl_chart: ^1.0.0
   step_progress_indicator: ^1.0.2
   easy_localization: ^3.0.8
-  persistent_bottom_nav_bar: ^6.2.1
+
   navbar_router: ^0.7.0
-  im_stepper: ^1.0.1+1
+  timeline_tile: ^2.0.0
+  timelines_plus: ^1.0.7
 
 dev_dependencies:
   flutter_test:

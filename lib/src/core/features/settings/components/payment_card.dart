@@ -28,7 +28,8 @@ class _PaymentCardState extends State<PaymentCard> {
       color: widget.paymentModel.bgColor.withValues(alpha: 0.05),
       padding: const EdgeInsets.all(myPadding / 2),
       border: Border.all(color: Colors.grey.shade200),
-      child: Column(
+      child:
+       Column(
         children: [
           Row(
             children: [
