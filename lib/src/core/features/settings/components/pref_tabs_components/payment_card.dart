@@ -28,21 +28,19 @@ class _PaymentCardState extends State<PaymentCard> {
       color: widget.paymentModel.bgColor.withValues(alpha: 0.05),
       padding: const EdgeInsets.all(myPadding / 2),
       border: Border.all(color: Colors.grey.shade200),
-      child:
-       Column(
+      child: Column(
         children: [
           Row(
             children: [
               Expanded(
                 flex: 2,
                 child: Container(
-                  height: 70,
+                  height: 60,
                   clipBehavior: Clip.hardEdge,
                   margin: const EdgeInsets.symmetric(vertical: myPadding / 2),
                   padding: EdgeInsets.zero,
                   decoration: BoxDecoration(
-                    // color: Colors.black,
-                    //  color: if(),
+             
                     color: widget.paymentModel.imagebgColor ?? Colors.black,
                     borderRadius: BorderRadius.circular(myPadding / 2),
                   ),

@@ -12,9 +12,7 @@ class CompanyDocuments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Company Documents', style: context.textTheme.bodyLarge),
-      ),
+      appBar: AppBar(title: const Text('Company Documents')),
       body: ListView(
         padding: const EdgeInsets.all(myPadding),
         shrinkWrap: true,

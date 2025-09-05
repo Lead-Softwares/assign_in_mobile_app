@@ -2,7 +2,9 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/components/tabs_components/prefrence_general_tab.dart';
+import 'package:assign_in/src/core/features/settings/components/pref_tabs_components/payroll_tab_data.dart';
+import 'package:assign_in/src/core/features/settings/components/pref_tabs_components/pref_other_tab.dart';
+import 'package:assign_in/src/core/features/settings/components/pref_tabs_components/prefrence_general_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -39,7 +41,9 @@ class _PrefrencesTabsState extends State<PrefrencesTabs>
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: myPadding / 2),
         GeneralContainer(
+          margin: const EdgeInsets.symmetric(horizontal: myPadding / 2),
           padding: const EdgeInsetsGeometry.all(myPadding / 2),
           borderRadius: BorderRadius.circular(myPadding / 1.5),
           // border: Border.all(color: Colors.grey.shade300),
@@ -103,12 +107,17 @@ class _PrefrencesTabsState extends State<PrefrencesTabs>
         const SizedBox(height: 10),
 
         SizedBox(
-          height: context.height * 2,
+          height: context.height * 1.2,
           child: TabBarView(
             controller: _controller,
-            children: const [PrefrenceGeneralTab(), SizedBox(), SizedBox()],
+            children: const [
+              PrefrenceGeneralTab(),
+              PayrollTabData(),
+              PrefOtherTab(),
+            ],
           ),
         ),
+        const SizedBox(height: myPadding * 3),
       ],
     );
   }

@@ -2,8 +2,8 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/components/payment_card.dart';
-import 'package:assign_in/src/core/features/settings/components/security_notice.dart';
+import 'package:assign_in/src/core/features/settings/components/pref_tabs_components/payment_card.dart';
+import 'package:assign_in/src/core/features/settings/components/business_tab_component/security_notice.dart';
 import 'package:assign_in/src/core/features/settings/model/payment_model.dart';
 import 'package:flutter/material.dart';
 

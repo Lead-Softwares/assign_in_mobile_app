@@ -2,8 +2,8 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/app_icon_widget.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
 import 'package:assign_in/src/core/features/accountant/screens/accountant_screen.dart';
-import 'package:assign_in/src/core/features/admin_dashboard/screens/admin_dashboard.dart';
 import 'package:assign_in/src/core/features/crm/screens/crm_screen.dart';
+import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
 import 'package:assign_in/src/core/features/overview/screens/overview.dart';
 import 'package:assign_in/src/core/features/settings/screens/settings.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   int _selectedIndex = 0;
   final List<Widget> _screens = const [
     OverviewScreen(),
-    AdminDashboard(),
+    HrDashboard(),
     AccountantScreen(),
     CRMScreen(),
     SettingScreen(),

@@ -7,6 +7,7 @@ import 'package:assign_in/src/core/features/settings/components/select_account.d
 import 'package:assign_in/src/core/features/settings/components/setting_item_tile.dart';
 import 'package:assign_in/src/core/features/settings/model/setting_model.dart';
 import 'package:assign_in/src/core/features/settings/screens/business_details.dart';
+import 'package:assign_in/src/core/features/settings/screens/calender_screen.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
 import 'package:assign_in/src/core/features/settings/screens/prefreneces_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,8 +74,12 @@ class _SettingScreenState extends State<SettingScreen> {
       image: 'assets/svg/dollar.svg',
     ),
   ];
-  final List<SettingModel> systemSettingItem = [
-    SettingModel(title: 'Calender', image: 'assets/svg/date.svg'),
+  List<SettingModel> get systemSettingItem => [
+    SettingModel(
+      title: 'Calender',
+      image: 'assets/svg/date.svg',
+      onTap: () => Navigator.pushNamed(context, CalenderScreen.routeName),
+    ),
     SettingModel(title: 'Languages', icon: Icons.language),
     SettingModel(
       title: 'Light Mode /Dark',
@@ -98,10 +103,7 @@ class _SettingScreenState extends State<SettingScreen> {
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
         centerTitle: false,
-        title: Text(
-          'Settings and Activity',
-          style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
-        ),
+        title: const Text('Settings and Activity'),
       ),
       body: ListView(
         children: [

@@ -8,4 +8,9 @@ enum TaskPriority {
     medium => 'medium',
     low => 'low',
   };
+  int get order => switch (this) {
+    high => 0,
+    medium => 1,
+    low => 2,
+  };
 }

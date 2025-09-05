@@ -7,6 +7,7 @@ import 'package:assign_in/src/core/features/company/screens/company_document.dar
 import 'package:assign_in/src/core/features/company/screens/company_profile.dart';
 import 'package:assign_in/src/core/features/hr_dashboard/screens/hr_dashboard_screen.dart';
 import 'package:assign_in/src/core/features/overview/screens/overview.dart';
+import 'package:assign_in/src/core/features/settings/screens/calender_screen.dart';
 import 'package:assign_in/src/core/features/settings/screens/manage_business.dart';
 import 'package:assign_in/src/core/features/settings/screens/prefreneces_screen.dart';
 import 'package:assign_in/src/core/features/settings/screens/settings.dart';
@@ -57,6 +58,9 @@ class RouteGenerator {
 
           builder: (context) => const PrefrenecesScreen(),
         );
+      case CalenderScreen.routeName:
+        return MaterialPageRoute( settings: settings,
+          builder: (context) => const CalenderScreen());
       case AdminDashboard.routeName:
         return MaterialPageRoute(
           settings: settings,

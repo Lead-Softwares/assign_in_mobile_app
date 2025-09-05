@@ -20,9 +20,7 @@ class _CompanyAssetsState extends State<CompanyAssets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Company Assets', style: context.textTheme.bodyLarge),
-      ),
+      appBar: AppBar(title: const Text('Company Assets')),
       body: ListView(
         padding: const EdgeInsets.all(myPadding),
         shrinkWrap: true,

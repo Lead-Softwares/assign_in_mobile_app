@@ -22,7 +22,7 @@ class CustomElevatedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(myPadding),
         ),
-        backgroundColor: loading ? Colors.grey : MyColors.primaryColor,
+        backgroundColor: loading ? Colors.grey : MyColors.mainCOlor,
       ),
       child: loading
           ? const Center(

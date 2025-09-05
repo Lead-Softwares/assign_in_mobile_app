@@ -1,7 +1,7 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/admin_dashboard/screens/admin_dashboard.dart';
+import 'package:assign_in/src/core/features/admin_dashboard/components/invite_team_widget.dart';
 import 'package:assign_in/src/core/features/overview/components/app_bar_widget.dart';
 import 'package:assign_in/src/core/features/overview/components/recent_projects.dart';
 import 'package:assign_in/src/core/features/overview/components/task_tabs_data.dart';
@@ -61,6 +61,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
 
           SliverToBoxAdapter(child: _title('Your Tasks')),
           const SliverToBoxAdapter(child: TaskTabsData()),
+          const SliverToBoxAdapter(child: SizedBox(height: myPadding * 3)),
         ],
       ),
       floatingActionButton: _addButton(),
@@ -89,7 +90,15 @@ class _OverviewScreenState extends State<OverviewScreen> {
       ),
       child: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, AdminDashboard.routeName);
+          showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            builder: (context) {
+              return const InviteTeam();
+            },
+          );
         },
         elevation: 0,
 

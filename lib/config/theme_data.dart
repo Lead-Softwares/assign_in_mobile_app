@@ -7,10 +7,15 @@ ThemeData lightThemeData() {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
+      titleTextStyle: GoogleFonts.dmSans(
+        color: Colors.black87,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
       backgroundColor: Colors.white,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.black87),
+      iconTheme: const IconThemeData(color: Colors.black87),
     ),
     textTheme: GoogleFonts.dmSansTextTheme().copyWith(
       titleLarge: GoogleFonts.dmSans(

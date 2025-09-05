@@ -1,8 +1,8 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/buttons.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/components/business_tabs.dart';
-import 'package:assign_in/src/core/features/settings/components/edit_business_profile.dart';
+import 'package:assign_in/src/core/features/settings/components/business_tab_component/business_tabs.dart';
+import 'package:assign_in/src/core/features/settings/components/business_tab_component/edit_business_profile.dart';
 import 'package:flutter/material.dart';
 
 class ManageBusinessScreen extends StatelessWidget {
@@ -16,9 +16,8 @@ class ManageBusinessScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Manage Business',
-              style: context.textTheme.bodyLarge?.copyWith(fontSize: 16),
             ),
             Text(
               'Update your business information',

@@ -1,7 +1,8 @@
 import 'package:assign_in/config/theme_data.dart';
+import 'package:assign_in/src/core/components/buttons.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/components/prefrences_tabs.dart';
+import 'package:assign_in/src/core/features/settings/components/pref_tabs_components/prefrences_tabs.dart';
 import 'package:flutter/material.dart';
 
 class PrefrenecesScreen extends StatelessWidget {
@@ -28,10 +29,18 @@ class PrefrenecesScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(myPadding),
+        padding: const EdgeInsets.all(myPadding / 2),
         // shrinkWrap: true,
-        children: [const PrefrencesTabs()],
+        children: [
+          const PrefrencesTabs(),
+          const SizedBox(height: myPadding * 2),
+        ],
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        child: CustomElevatedButton(text: 'Apply', onPress: () {}),
+      ),
+      extendBody: true,
     );
   }
 }

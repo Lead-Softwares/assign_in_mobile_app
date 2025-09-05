@@ -1,7 +1,7 @@
 import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/features/settings/components/subscription_card.dart';
+import 'package:assign_in/src/core/features/settings/components/business_tab_component/subscription_card.dart';
 import 'package:flutter/material.dart';
 
 class BillingDetails extends StatelessWidget {

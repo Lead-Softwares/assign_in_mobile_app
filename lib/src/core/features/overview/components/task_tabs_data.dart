@@ -2,7 +2,6 @@ import 'package:assign_in/config/theme_data.dart';
 import 'package:assign_in/src/core/components/general_container.dart';
 import 'package:assign_in/src/core/constants/my_colors.dart';
 import 'package:assign_in/src/core/extensions/context_extension.dart';
-import 'package:assign_in/src/core/extensions/enum_methods.dart';
 import 'package:assign_in/src/core/features/overview/components/recent_projects.dart';
 import 'package:assign_in/src/core/features/overview/model/task_model.dart';
 import 'package:assign_in/src/utils/time_utils.dart';
@@ -34,15 +33,36 @@ class _TaskTabsDataState extends State<TaskTabsData>
 
   @override
   Widget build(BuildContext context) {
-    final todoTasks = TaskModel.staticData
-        .where((t) => t.status == TaskStatus.todo)
-        .toList();
-    final progressTasks = TaskModel.staticData
-        .where((t) => t.status == TaskStatus.progress)
-        .toList();
-    final completedTasks = TaskModel.staticData
-        .where((t) => t.status == TaskStatus.completed)
-        .toList();
+    // final todoTasks = TaskModel.staticData
+    //     .where((t) => t.status == TaskStatus.todo)
+    //     .toList();
+    // final progressTasks = TaskModel.staticData
+    //     .where((t) => t.status == TaskStatus.progress)
+    //     .toList();
+    // final completedTasks = TaskModel.staticData
+    //     .where((t) => t.status == TaskStatus.completed)
+    //     .toList();
+    final todoTasks =
+        TaskModel.staticData.where((t) => t.status == TaskStatus.todo).toList()
+          ..sort(
+            (a, b) => a.taskPriority.order.compareTo(b.taskPriority.order),
+          );
+
+    final progressTasks =
+        TaskModel.staticData
+            .where((t) => t.status == TaskStatus.progress)
+            .toList()
+          ..sort(
+            (a, b) => a.taskPriority.order.compareTo(b.taskPriority.order),
+          );
+
+    final completedTasks =
+        TaskModel.staticData
+            .where((t) => t.status == TaskStatus.completed)
+            .toList()
+          ..sort(
+            (a, b) => a.taskPriority.order.compareTo(b.taskPriority.order),
+          );
 
     return Column(
       children: [
@@ -79,7 +99,7 @@ class _TaskTabsDataState extends State<TaskTabsData>
         const SizedBox(height: 10),
 
         SizedBox(
-          height: context.height * 2,
+          height: context.height * 2.2,
           child: TabBarView(
             controller: _controller,
             children: [
@@ -98,26 +118,41 @@ class _TaskTabsDataState extends State<TaskTabsData>
       return const Center(child: Text('No tasks available'));
     }
 
-    return ListView.builder(
+    return ReorderableListView.builder(
       padding: EdgeInsets.zero,
-      itemCount: tasks.length,
       physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) => TaskCard(taskModel: tasks[index]),
+      shrinkWrap: true,
+      itemCount: tasks.length,
+      onReorder: (oldIndex, newIndex) {
+        setState(() {
+          if (newIndex > oldIndex) newIndex -= 1;
+          final task = tasks.removeAt(oldIndex);
+          tasks.insert(newIndex, task);
+        });
+      },
+      itemBuilder: (context, index) {
+        final task = tasks[index];
+        return TaskCard(key: ValueKey(task.id), taskModel: task, index: index);
+      },
     );
   }
 }
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key, required this.taskModel});
+  const TaskCard({super.key, required this.taskModel, required this.index});
+
   final TaskModel taskModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return GeneralContainer(
+      key: key,
       padding: const EdgeInsets.symmetric(
         horizontal: myPadding / 2,
         vertical: myPadding / 1.2,
       ),
+      margin: const EdgeInsets.all(myPadding / 2),
       height: 90,
       boxShadow: [
         BoxShadow(
@@ -127,11 +162,17 @@ class TaskCard extends StatelessWidget {
           offset: const Offset(3, 3),
         ),
       ],
-
-      margin: const EdgeInsets.all(myPadding / 2),
       child: Row(
         children: [
-          Icon(Icons.check_circle_outline, color: Colors.grey.shade400),
+          Icon(
+            taskModel.status == TaskStatus.completed
+                ? Icons.check_circle
+                : Icons.check_circle_outline,
+            color: taskModel.status == TaskStatus.completed
+                ? Colors.green
+                : Colors.grey.shade400,
+          ),
+          // Icon(Icons.check_circle_outline, color: Colors.grey.shade400),
           const SizedBox(width: myPadding / 1.5),
           Expanded(
             flex: 5,
@@ -139,7 +180,8 @@ class TaskCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  TimeUtils.convertDateTimeFormat(taskModel.date),
+                  '${TimeUtils.convertDateFormat(taskModel.date)} ${TimeUtils.convertTimeFormat(taskModel.time)}',
+
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: Colors.grey.shade500,
                     fontSize: 11,
@@ -163,16 +205,18 @@ class TaskCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(Icons.drag_indicator, color: Colors.grey.shade500),
+                ReorderableDragStartListener(
+                  index: index,
+                  child: const Icon(Icons.drag_indicator, color: Colors.grey),
+                ),
                 BadgeContainer(
                   color: Colors.red.shade50,
                   child: Row(
                     children: [
                       Icon(Icons.flag, color: Colors.red.shade500, size: 18),
-
                       const SizedBox(width: myPadding / 4),
                       Text(
-                        enumToString(taskModel.taskPriority),
+                        taskModel.taskPriority.name,
                         style: context.textTheme.bodyMedium?.copyWith(
                           fontSize: 11,
                         ),

@@ -59,7 +59,6 @@ class EditBusinessProfile extends StatelessWidget {
                           width: 18,
                           'assets/svg/material-icon-theme_verified.svg',
                         ),
-                        // const Icon(CupertinoIcons.checkmark_alt_circle),
                         const SizedBox(width: myPadding / 3),
                         Text(
                           'Active',
